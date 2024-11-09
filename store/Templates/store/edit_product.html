@@ -1,0 +1,29 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+    <form class="form bg-light p-4 rounded shadow" method="post" action="{% url 'edit_product' product.product_id %}" style="width: 300px;">
+        <div class="form-group mb-3">
+            <h2 class="fs-3 py-2 fw-bold">Edit product</h2>
+            {% csrf_token %}
+            <label for="product_name">Product name:</label>
+            <input type="text" id="product_name" name="product_name" value="{{product.product_name}}" required class="form-control">
+
+            <label for="mrp">MRP:</label>
+            <input type="number" id="mrp" name="mrp" value="{{product.mrp}}" required class="form-control" step="0.01" min="0">
+
+
+            <label for="mfg">MFG:</label>
+            <input type="date" id="mfg" name="mfg" value="{{product.mfg}}" required class="form-control">
+
+            <label for="exp">EXP:</label>
+            <input type="date" id="exp" name="exp" value="{{product.exp}}" required class="form-control">
+
+            <label for="qty">Quantity:</label>
+            <input type="number" id="qty" name="qty" value="{{product.qty}}" required class="form-control">
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

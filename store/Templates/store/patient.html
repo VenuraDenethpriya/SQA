@@ -1,0 +1,57 @@
+{% extends "store/base.html" %}
+
+{% block content  %}   
+    <div class="p-3 m-5">
+        <div class="p-2 row my-1">
+            <div class="col-11">
+                <h1 class="fs-2">Patients</h1>
+                <p>A list of all Patients in system.</p>
+            </div>
+            <div class="col pb-3">
+                <a href="{% url 'add_patient' %}" class="add-button text-end">Add Patient</a>
+            </div>
+        </div>
+        <div class="p-3">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient Name</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                        <th>Problem</th>
+                        <th>Customer Name</th>
+                        <th>Customer Age</th>
+                        <th>NIC</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                    <tr>
+                        <td>{{patient.patient_id}}</td>
+                        <td>{{patient.patient_name}}</td>
+                        <td>{{patient.age}}</td>
+                        <td>{{patient.sex}}</td>
+                        <td>{{patient.problem}}</td>
+                        <td>{{patient.customer_name}}</td>
+                        <td>{{patient.customer_age}}</td>
+                        <td>{{patient.nic}}</td>
+                        <td>
+                            <form method="POST" action="{% url 'edit_patient' patient_id=patient.patient_id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button class="edit-button btn btn-primary me-2">Edit</button>
+                            </form>
+                            <form method="POST" action="{% url 'delete_patient' patient_id=patient.patient_id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button class="delete-button btn btn-danger">Delete</button>
+                            </form>
+                        </td>                                            
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+{% endblock  %}

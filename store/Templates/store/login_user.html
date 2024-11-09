@@ -1,0 +1,39 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+    <form class="form p-4 bg-light rounded shadow" method="POST" action="{% url 'login_user' %}">
+        {% csrf_token %}
+        <h1 class="fs-3 py-2 fw-bold text-center">Login</h1>
+
+        
+
+        <div class="flex-column mb-0">
+            <label for="username">User Name</label>
+        </div>
+        <div class="inputForm mb-3 d-flex align-items-center">
+            <input type="text" name="username" placeholder="Enter username" required class="input form-control ms-2">
+        </div>
+        <div class="flex-column mb-3">
+            <label for="password">Password</label>
+        </div>
+        <div class="inputForm mb-0 d-flex align-items-center">
+            <input type="password" name="password" placeholder="Enter password" required class="input form-control ms-2">
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <input type="radio" />
+                <label>Remember me</label>
+            </div>
+            <span class="text-primary">Forgot password?</span>
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn btn-primary w-25">Log In</button>
+        </div>
+        <a href="{% url 'register' %}">
+            <p class="text-center mb-3">Don't have an account? <span class="text-primary">Sign In</span></p>
+        </a>
+    </form>         
+</div>
+{% endblock %}

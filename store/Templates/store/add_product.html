@@ -1,0 +1,28 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+    <form class="form bg-light p-4 rounded shadow" method="POST" action="{% url 'add_product' %}" style="width: 300px;">
+        <div class="form-group mb-3">
+            <h2 class="fs-3 py-2 fw-bold">Add new product</h2>
+            {% csrf_token %}
+            <label for="product_name">Product name:</label>
+            <input type="text" id="product_name" name="product_name" placeholder="Enter product name" required class="form-control">
+
+            <label for="mrp">MRP:</label>
+            <input type="number" id="mrp" name="mrp" value="{{product.mrp}}" required class="form-control" step="0.01" min="0">
+
+            <label for="mfg">MFG:</label>
+            <input type="date" id="mfg" name="mfg" placeholder="Enter product mfg" required class="form-control">
+
+            <label for="exp">EXP:</label>
+            <input type="date" id="exp" name="exp" placeholder="Enter product exp" required class="form-control">
+
+            <label for="qty">Quantity:</label>
+            <input type="number" id="qty" name="qty" placeholder="Enter product qty" required class="form-control">
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

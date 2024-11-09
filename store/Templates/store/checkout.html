@@ -1,0 +1,63 @@
+{% extends "store/base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center my-5">
+        <!-- Checkout Card -->
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card cart">
+                <label class="title">CHECKOUT</label>
+                <div class="steps">
+                    <div class="step">
+                        <div>
+                            <span>SHIPPING</span>
+                            <p>221B Baker Street, W1U 8ED</p>
+                            <p>London, United Kingdom</p>
+                        </div>
+                        <hr>
+                        <div>
+                            <span>PAYMENT METHOD</span>
+                            <p>Visa</p>
+                            <p>**** **** **** 4243</p>
+                        </div>
+                        <hr>
+                        <div class="promo">
+                            <span>HAVE A PROMO CODE?</span>
+                            <form class="form">
+                                <input class="input_field form-control" placeholder="Enter a Promo Code" type="text">
+                                <button class="btn btn-primary w-100">Apply</button>
+                            </form>
+                        </div>
+                        <hr>
+                        <div class="payments">
+                            <span>PAYMENT</span>
+                            <div class="details">
+                                <div class="d-flex justify-content-between">
+                                    <span>Subtotal:</span>
+                                    <span>$240.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Shipping:</span>
+                                    <span>$10.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Tax:</span>
+                                    <span>$30.40</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <div class="card checkout mt-4">
+                <div class="footer">
+                    <label class="price">$280.40</label>
+                    <button class="checkout-btn btn btn-success w-100">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

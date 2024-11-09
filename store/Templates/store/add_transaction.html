@@ -1,0 +1,101 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <form class="form bg-light p-4 mb-5 rounded shadow" method="post" action="{% url 'transaction' %}" style="width: 900px;">
+        <h2 class="fs-3 py-2 fw-bold">Add new transaction</h2>
+        {% csrf_token %}
+        {{ transaction_form.as_p }}
+
+        <h4>Products</h4>
+        <table class="table form-control" id="productsTable">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="productsBody">
+                {% for form in formset %}
+                <tr class="product-row">
+                    <td>{{ form.product_name }}</td>
+                    <td><input type="number" name="quantity" class="quantity form-control" onchange="updateTotal(this)"></td>
+                    <td><input type="number" name="unit_price" class="unit-price form-control" onchange="updateTotal(this)"></td>
+                    <td><input type="text" class="product-total form-control" readonly></td>
+                    <td><button type="button" class="delete-button" onclick="removeRow(this)">Remove</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Displaying Gross Total -->
+        <div class="d-flex justify-content-between">
+            <h5>Gross Total:</h5>
+            <input type="text" id="grossTotal" class="form-control w-25" readonly>
+        </div>
+
+        <div class="d-flex align-items-center mb-5">
+            <div>
+                <button type="button" class="delete-button" onclick="addProductRow()">Add Product</button>
+            </div>
+            <div class="ms-auto">
+                <button type="submit" class="delete-button">Checkout</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Add new product row
+    function addProductRow() {
+        const tableBody = document.getElementById('productsBody');
+        const newRow = tableBody.querySelector('.product-row').cloneNode(true);
+        newRow.querySelectorAll('input').forEach(input => input.value = '');  // Clear input values
+        tableBody.appendChild(newRow);
+        updateGrossTotal();  // Recalculate the gross total when a new row is added
+    }
+
+    // Remove a product row
+    function removeRow(button) {
+        button.closest('tr').remove();
+        updateGrossTotal();  // Recalculate the gross total after removing a row
+    }
+
+    // Update total for individual product and gross total
+    function updateTotal(input) {
+        const row = input.closest('tr');
+        const quantity = row.querySelector('.quantity').value;
+        const unitPrice = row.querySelector('.unit-price').value;
+        const totalField = row.querySelector('.product-total');
+
+        // Only calculate if both quantity and unit price are filled
+        if (quantity && unitPrice) {
+            const total = parseFloat(quantity) * parseFloat(unitPrice);
+            totalField.value = total.toFixed(2);  // Format to 2 decimal places
+        } else {
+            totalField.value = '';  // Clear total if fields are empty
+        }
+
+        updateGrossTotal();  // Update gross total after each product's total is updated
+    }
+
+    // Calculate and update the gross total
+    function updateGrossTotal() {
+        let grossTotal = 0;
+
+        // Get all product totals and sum them up
+        const productTotals = document.querySelectorAll('.product-total');
+        productTotals.forEach(totalField => {
+            if (totalField.value) {
+                grossTotal += parseFloat(totalField.value);
+            }
+        });
+
+        // Display the gross total in the input field
+        document.getElementById('grossTotal').value = grossTotal.toFixed(2);  // Format to 2 decimal places
+    }
+</script>
+{% endblock %}

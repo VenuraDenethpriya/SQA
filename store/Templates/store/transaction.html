@@ -1,0 +1,44 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="p-3 m-5">
+    <h1 class="fs-2">Transaction Details</h1>
+    <div class="col pb-3">
+        <a href="{% url 'add_transaction' %}" class="add-button text-end">Add Transaction</a>
+    </div>
+
+    <h4>All Transactions</h4>
+    <div class="p-3">
+        <table>
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Date/Time</th>
+                    <th>Patient Name</th>
+                    <th>Customer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_id }}</td>
+                    <td>{{ transaction.date_time }}</td>
+                    <td>{{ transaction.patient_name }}</td>
+                    <td>{{ transaction.customer_name }}</td>
+                    <td>
+                        <ul>
+                            {% for product in transaction.products.all %}
+                                <li>{{ product.product_name }} (Qty: {{ product.quantity }}, Price: {{ product.unit_price }})</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

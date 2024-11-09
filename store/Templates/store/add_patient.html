@@ -1,0 +1,38 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+    <form class="form bg-light p-4 rounded shadow" method="POST" action="{% url 'add_patient' %}" style="width: 300px;">
+        <div class="form-group mb-3">
+            <h2 class="fs-3 py-2 fw-bold">Add new patient</h2>
+            {% csrf_token %}
+            <label for="patient_name">Patient name:</label>
+            <input type="text" id="patient_name" name="patient_name" placeholder="Enter patient name" required class="form-control">
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter patient age" required class="form-control">
+
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" required class="form-control">
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="problem">Problem:</label>
+            <input type="text" id="problem" name="problem" placeholder="problem" required class="form-control">
+
+            <label for="customer_name">Customer name:</label>
+            <input type="text" id="customer_name" name="customer_name" placeholder="Enter customer name" required class="form-control">
+
+            <label for="customer_age">Customer Age:</label>
+            <input type="number" id="customer_age" name="customer_age" placeholder="Enter customer age" min="19" required class="form-control">
+
+            <label for="nic">NIC:</label>
+            <input type="text" id="nic" name="nic" placeholder="Enter nic" required class="form-control">
+        </div>
+
+        <button class="btn btn-primary w-100" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
