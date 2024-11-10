@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Product, Patient, User
 from django.shortcuts import get_object_or_404
-from .forms import TransactionForm, TransactionProductFormSet, SignUpForm
+from .forms import TransactionForm, TransactionProductForm, SignUpForm
 from .models import Transaction, TransactionProduct
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -10,8 +10,9 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.utils import timezone
 from datetime import timedelta
-
-
+from django.shortcuts import render
+from .models import Transaction, TransactionProduct
+from .forms import TransactionProductFormSet
 # Create your views here.
 def home(request):
     return render(request, 'store/home.html', {})
@@ -69,11 +70,8 @@ def patient(request):
 
 def transaction(request):
     transactions = Transaction.objects.all()
-    transaction_products = TransactionProduct.objects.all()
-
     return render(request, 'store/transaction.html', {
         'transactions': transactions,
-        'transaction_products': transaction_products,
     })
 
 # Add/edit/delete product
@@ -157,13 +155,13 @@ def edit_patient(request,  patient_id):
         
 #Transaction
 def add_transaction(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         transaction_form = TransactionForm(request.POST)
         product_formset = TransactionProductFormSet(request.POST)
 
         if transaction_form.is_valid() and product_formset.is_valid():
             # Save the transaction
-            transactions = transaction_form.save()
+            transaction = transaction_form.save()
 
             # Save each product in the formset and associate it with the transaction
             for form in product_formset:
@@ -173,10 +171,17 @@ def add_transaction(request):
                     transaction_product.save()
 
             # Redirect to the transaction page after saving
-            return redirect('transaction')
+            return redirect('transaction')  # Ensure 'transaction' URL is correctly mapped in your urls.py
         else:
-            transaction_form = TransactionForm()
-            product_formset = TransactionProductFormSet()
+            return render(request, 'store/add_transaction.html', {
+                'transaction_form': transaction_form,
+                'formset': product_formset,
+            })
+    
+    else:
+        # GET request: Provide empty forms for transaction and product entry
+        transaction_form = TransactionForm()
+        product_formset = TransactionProductFormSet()
 
     return render(request, 'store/add_transaction.html', {
         'transaction_form': transaction_form,
@@ -199,4 +204,4 @@ def register(request):
             password=password
         )
         return redirect('login')
-    return render(request, 'store/regi
+    return render(request, 'store/register.html')

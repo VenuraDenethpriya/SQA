@@ -16,6 +16,7 @@
                     <th>Date/Time</th>
                     <th>Patient Name</th>
                     <th>Customer Name</th>
+                    <th>Products</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,13 +28,10 @@
                     <td>{{ transaction.customer_name }}</td>
                     <td>
                         <ul>
-                            {% for product in transaction.products.all %}
+                            {% for product in transaction.transactionproduct_set.all %}
                                 <li>{{ product.product_name }} (Qty: {{ product.quantity }}, Price: {{ product.unit_price }})</li>
                             {% endfor %}
                         </ul>
-                    </td>
-                    <td>
-
                     </td>
                 </tr>
                 {% endfor %}
