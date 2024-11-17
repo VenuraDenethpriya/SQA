@@ -31,7 +31,6 @@
             </tbody>
         </table>
 
-        <!-- Displaying Gross Total -->
         <div class="d-flex justify-content-between">
             <h5>Gross Total:</h5>
             <input type="text" id="grossTotal" class="form-control w-25" readonly>
@@ -49,44 +48,38 @@
 </div>
 
 <script>
-    // Add new product row
     function addProductRow() {
         const tableBody = document.getElementById('productsBody');
         const newRow = tableBody.querySelector('.product-row').cloneNode(true);
-        newRow.querySelectorAll('input').forEach(input => input.value = '');  // Clear input values
+        newRow.querySelectorAll('input').forEach(input => input.value = '');
         tableBody.appendChild(newRow);
-        updateGrossTotal();  // Recalculate the gross total when a new row is added
+        updateGrossTotal(); 
     }
 
-    // Remove a product row
     function removeRow(button) {
         button.closest('tr').remove();
-        updateGrossTotal();  // Recalculate the gross total after removing a row
+        updateGrossTotal();
     }
 
-    // Update total for individual product and gross total
     function updateTotal(input) {
         const row = input.closest('tr');
         const quantity = row.querySelector('.quantity').value;
         const unitPrice = row.querySelector('.unit-price').value;
         const totalField = row.querySelector('.product-total');
 
-        // Only calculate if both quantity and unit price are filled
         if (quantity && unitPrice) {
             const total = parseFloat(quantity) * parseFloat(unitPrice);
-            totalField.value = total.toFixed(2);  // Format to 2 decimal places
+            totalField.value = total.toFixed(2);
         } else {
-            totalField.value = '';  // Clear total if fields are empty
+            totalField.value = '';
         }
 
-        updateGrossTotal();  // Update gross total after each product's total is updated
+        updateGrossTotal();
     }
 
-    // Calculate and update the gross total
     function updateGrossTotal() {
         let grossTotal = 0;
 
-        // Get all product totals and sum them up
         const productTotals = document.querySelectorAll('.product-total');
         productTotals.forEach(totalField => {
             if (totalField.value) {
@@ -94,8 +87,7 @@
             }
         });
 
-        // Display the gross total in the input field
-        document.getElementById('grossTotal').value = grossTotal.toFixed(2);  // Format to 2 decimal places
+        document.getElementById('grossTotal').value = grossTotal.toFixed(2);
     }
 </script>
 {% endblock %}

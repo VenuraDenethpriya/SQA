@@ -2,9 +2,8 @@
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
-    {% csrf_token %}
-    <form class="form bg-light p-4 mb-5 rounded shadow" method="post" action="{% url 'register' %}">
-
+    <form class="form bg-light p-4 mb-5 rounded shadow" method="post" action="{% url 'register_user' %}">
+        {% csrf_token %}
         <div class="flex-column mb-0">
             <label for="first_name">First Name </label>
         </div>

@@ -1,0 +1,50 @@
+{% extends "store/base.html" %}
+
+{% block content  %}   
+    <div class="p-3 m-5" style="min-height: 70vh;">
+        <div class="p-2 row my-1">
+            <div class="col-11">
+                <h1 class="fs-2">Trnsactions</h1>
+                <p>A list of all transactions in system.</p>
+            </div>
+            <div class="col pb-3">
+                <a href="{% url 'generate_transaction_report' %}" class="genarate-button text-end">Report</a>
+            </div>
+            <div class="col pb-3">
+                <a href="{% url 'transaction_form' %}" class="add-button text-end">Add Transaction</a>
+            </div>
+        </div>
+        
+        <div class="p-3">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date/Time</th>
+                        <th>Patient Name</th>
+                        <th>Patient Age</th>
+                        <th>Problem</th>
+                        <th>Products</th>
+                        <th>customer Name</th>
+                        <th>customer Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for newTransaction in newTransactions %}
+                    <tr>
+                        <td>{{newTransaction.transaction_id}}</td>
+                        <td>{{newTransaction.datetime}}</td>
+                        <td>{{newTransaction.patient_name}}</td>
+                        <td>{{newTransaction.patient_age}}</td>
+                        <td>{{newTransaction.problem}}</td>
+                        <td>{{newTransaction.products}}</td>
+                        <td>{{newTransaction.customer_name}}</td>
+                        <td>{{newTransaction.customer_age}}</td>                                             
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+{% endblock  %}

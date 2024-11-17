@@ -3,26 +3,27 @@
 {% block content %}
 <div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
     <form class="form bg-light p-4 rounded shadow" method="post" action="{% url 'edit_patient' patient.patient_id %}" style="width: 300px;">
+        {% csrf_token %}
         <div class="form-group mb-3">
             <h2 class="fs-3 py-2 fw-bold">Edit patient</h2>
-            {% csrf_token %}
-            <<label for="patient_name">Patient name:</label>
-            <input type="text" id="patient_name" name="patient_name" value="{{patient.patient_name}}" required class="form-control">
+            
+            <label for="patient_name">Patient name:</label>
+            <input type="text" id="patient_name" name="patient_name" value="{{ patient.patient_name }}" required class="form-control">
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" value="{{patient.age}}" required class="form-control">
+            <input type="number" id="age" name="age" value="{{ patient.age }}" required class="form-control">
 
             <label for="problem">Problem:</label>
-            <input type="text" id="problem" name="problem" value="{{patient.problem}}" required class="form-control">
+            <input type="text" id="problem" name="problem" value="{{ patient.problem }}" required class="form-control">
 
             <label for="customer_name">Customer name:</label>
-            <input type="text" id="customer_name" name="customer_name" value="{{patient.customer_name}}" required class="form-control">
+            <input type="text" id="customer_name" name="customer_name" value="{{ patient.customer_name }}" required class="form-control">
 
             <label for="customer_age">Customer Age:</label>
-            <input type="number" id="customer_age" name="customer_age" value="{{patient.customer_age}}" min="19" required class="form-control">
+            <input type="number" id="customer_age" name="customer_age" value="{{ patient.customer_age }}" min="19" required class="form-control">
 
             <label for="nic">NIC:</label>
-            <input type="text" id="nic" name="nic" value="{{patient.nic}}" required class="form-control">
+            <input type="text" id="nic" name="nic" value="{{ patient.nic }}" required class="form-control">
         </div>
 
         <button class="btn btn-primary w-100" type="submit">Save Changes</button>

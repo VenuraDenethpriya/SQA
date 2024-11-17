@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.hashers import make_password, check_password
-# Create your models here.
 
+# Create your models here.
 class User(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -32,7 +32,10 @@ class User(models.Model):
         if not self.pk:  # Check if it's a new user
             self.set_password(self.password)
         super().save(*args, **kwargs)
-        
+
+  
+  
+   
 #Product
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
@@ -45,6 +48,9 @@ class Product(models.Model):
     
     def __str__(self):
         return self.product_name
+
+
+
 
 #Patient
 class Patient(models.Model):
@@ -60,8 +66,26 @@ class Patient(models.Model):
     def __str__(self):
         return self.patient_name
   
+  
 
 #Transaction
+class NewTransaction(models.Model):
+    transaction_id = models.AutoField(primary_key=True)
+    datetime = models.DateTimeField(auto_now_add=True)
+    patient_name = models.CharField(max_length=50)
+    patient_age = models.IntegerField()
+    problem = models.CharField(max_length=500)
+    products = models.CharField(max_length=500)
+    customer_name = models.CharField(max_length=50)
+    customer_age = models.IntegerField()
+    
+    
+
+
+
+
+
+# Wrong code
 class Transaction(models.Model):
     transaction_id = models.CharField(max_length=20, unique=True)
     date_time = models.DateTimeField()

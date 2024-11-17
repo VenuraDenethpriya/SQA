@@ -1,0 +1,58 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
+    <form class="form bg-light p-4 rounded shadow" method="POST" action="{% url 'transaction_form' %}" style="width: 500px;">
+        <div class="form-group mb-3">
+            <h2 class="fs-3 py-2 fw-bold">Add new transaction</h2>
+            {% csrf_token %}
+            
+            <label for="patient_name">Patient Name:</label>
+            <select id="patient_name" name="patient_name" class="form-control">
+                <option value="">Select patient</option>
+                {% for patient in patients %}
+                <option value="{{ patient.patient_name }}" data-age="{{ patient.age }}" data-problem="{{ patient.problem }}">
+                    {{ patient.patient_name }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="patient_age">Patient Age:</label>
+            <input type="number" id="patient_age" name="patient_age" class="form-control" readonly>
+
+            <label for="problem">Problem:</label>
+            <input type="text" id="problem" name="problem" placeholder="Enter problem" class="form-control">
+
+            <label for="products">Products:</label>
+            <input type="text" id="products" name="products" class="form-control">
+
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name" placeholder="Enter customer name" class="form-control">
+
+            <label for="customer_age">Customer Age:</label>
+            <input type="number" id="customer_age" name="customer_age" placeholder="Enter customer age" class="form-control" min="19">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary w-fit" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    const patientSelect = document.getElementById("patient_name");
+    const patientAgeInput = document.getElementById("patient_age");
+    const problemInput = document.getElementById("problem");
+
+    patientSelect.addEventListener("change", function () {
+        const selectedOption = patientSelect.options[patientSelect.selectedIndex];
+
+        const patientAge = selectedOption.getAttribute("data-age");
+        const problem = selectedOption.getAttribute("data-problem");
+
+        patientAgeInput.value = patientAge || ""; 
+        problemInput.value = problem || "";
+    });
+</script>
+{% endblock %}

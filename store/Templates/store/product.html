@@ -1,7 +1,7 @@
 {% extends "store/base.html" %}
 
 {% block content  %}   
-    <div class="p-3 m-5">
+    <div class="p-3 m-5" style="min-height: 70vh;">
         <div class="p-2 row my-1">
             <div class="col-11">
                 <h1 class="fs-2">Products</h1>
@@ -22,20 +22,20 @@
                         <th>MFG</th>
                         <th>EXP</th>
                         <th>Quantity</th>
-                        <th></th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for product in products %}
                     <tr>
-                        <td>{{product.product_id}}</td>
-                        <td>{{product.product_name}}</td>
-                        <td>{{product.mrp}}</td>
-                        <td>{{product.mfg}}</td>
-                        <td>{{product.exp}}</td>
-                        <td>{{product.qty}}</td>
+                        <td>{{ product.product_id }}</td>
+                        <td>{{ product.product_name }}</td>
+                        <td>{{ product.mrp }}</td>
+                        <td>{{ product.mfg }}</td>
+                        <td>{{ product.exp }}</td>
+                        <td>{{ product.qty }}</td>
                         <td>
-                            <form method="POST"  action="{% url 'edit_product' product_id=product.product_id %}" style="display: inline;">
+                            <form method="POST" action="{% url 'edit_product' product_id=product.product_id %}" style="display: inline;">
                                 {% csrf_token %}
                                 <button class="edit-button btn btn-primary me-2">Edit</button>
                             </form>
@@ -50,5 +50,4 @@
             </table>
         </div>
     </div>
-    
-{% endblock  %}
+{% endblock %}
