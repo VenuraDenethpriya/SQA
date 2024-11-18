@@ -1,39 +1,38 @@
 {% extends "store/base.html" %} 
 
 {% block content %}
-<div class="banner">
-    <div class="homepageContainer">
-        <div class="bannerHeader">
-            <h1>Arogya</h1>
-            <p>Medical Shop Management System</p>
-        </div>
-        <p class="bannerTagline">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-   </div>
-</div>
-<div>
-    <div class="px-4 pt-4 ">
-        <p class="fs-1 fw-bold">Our products</p>
-    </div>
-    <div class="px-4 pb-4 d-flex flex-wrap gap-2">
-        {% for product in products %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Product Name: {{ product.product_name }}</h5>
+
+<div style="min-height: 82vh;">
+    <div class="banner">
+        <div class="homepageContainer">
+            <div class="bannerHeader">
+                <h1>Arogya</h1>
+                <p>Medical Shop Management System</p>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">MRP: {{ product.mrp }}</li>
-                <li class="list-group-item">MFR: {{ product.mfr }}</li>
-                <li class="list-group-item">EXP: {{ product.exp }}</li>
-                <li class="list-group-item">Qty: {{ product.qty }}</li>
-            </ul>
+            <p class="bannerTagline">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+       </div>
+    </div>
+    <div>
+        <div class="px-4 pt-4 ">
+            <p class="fs-1 fw-bold">Our products</p>
         </div>
-        {% endfor %}
+        <div class="px-5 pb-4 d-flex flex-wrap gap-5">
+            {% for product in products %}
+            <div class="card" style="width: 16rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Product Name: {{ product.product_name }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">MRP: Rs. {{ product.mrp }}</li>
+                    <li class="list-group-item">MFR: {{ product.mfg }}</li>
+                    <li class="list-group-item">EXP: {{ product.exp }}</li>
+                    <li class="list-group-item">Qty: {{ product.qty }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-</div>
-  
-
-
 {% endblock %}

@@ -10,13 +10,11 @@ import re
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        # Fields from User model to be included in the form
         fields = ['first_name','last_name', 'username', 'email','password1', 'password2']
 
     def clean_password1(self):
         password1 = self.cleaned_data.get("password1")
         
-        # Ensure the password is at least 6 characters and contains both letters and numbers
         if len(password1) < 6:
             raise ValidationError("Password must be at least 6 characters long.")
         if not re.search(r'[A-Za-z]', password1):

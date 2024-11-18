@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
-    <form class="form bg-light p-4 rounded shadow" method="POST" action="{% url 'add_patient' %}" style="width: 300px;">
+    <form class="form bg-light p-4 rounded shadow" method="POST" action="{% url 'add_patient' %}" style="width: 500px;">
         <div class="form-group mb-3">
             <h2 class="fs-3 py-2 fw-bold">Add new patient</h2>
             {% csrf_token %}
