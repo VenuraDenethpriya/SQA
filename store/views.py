@@ -62,23 +62,28 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-    form = SignUpForm()
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            username= form.cleaned_data["username"]
-            password= form.cleaned_data["password1"]
-            #log in user
-            user =authenticate(username=username, password=password)
-            login(request,user)
-            messages.success(request, ("You have registered! Welcome!!!"))
-            return redirect('home')
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password1"])
+            user.save()
+            
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password1"]
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                messages.success(request, "You have registered Welcome!")
+                return redirect('home')
+            else:
+                messages.error(request, "Error during authentication. Please log in manually.")
+                return redirect('login')
         else:
-            messages.error(request, ("threre is a problem registering, try again"))
-            return redirect('home')
+            return render(request, 'store/register_user.html', {'form': form})
     else:
-        return render(request,'store/register_user.html', {'form': form})
+        form = SignUpForm()
+    return render(request, 'store/register_user.html', {'form': form})
 
 
 

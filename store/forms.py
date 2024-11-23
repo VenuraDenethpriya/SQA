@@ -10,19 +10,42 @@ import re
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name','last_name', 'username', 'email','password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
     def clean_password1(self):
         password1 = self.cleaned_data.get("password1")
         
         if len(password1) < 6:
             raise ValidationError("Password must be at least 6 characters long.")
+        
         if not re.search(r'[A-Za-z]', password1):
             raise ValidationError("Password must contain at least one letter.")
+        
+        if not re.search(r'[a-z]', password1):
+            raise ValidationError("Password must contain at least one lowercase letter.")
+        
+        if not re.search(r'[A-Z]', password1):
+            raise ValidationError("Password must contain at least one uppercase letter.")
+        
         if not re.search(r'[0-9]', password1):
             raise ValidationError("Password must contain at least one number.")
         
+        if not re.search(r'[\W_]', password1):
+            raise ValidationError("Password must contain at least one special character (e.g., @, #, $, %, etc.).")
+        
         return password1
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        
+        # Check if passwords match
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("The two passwords do not match.")
+        
+        return password2
+
+
 
 
 
