@@ -867,8 +867,8 @@ tr:nth-child(even) {
 
 /* Header Footer BG */
 .custom-bg {
-  background-color: #535353; /* Correct background color */
-  box-shadow: 0px 4px 6px rgba(78, 75, 78, 0.5); /* Correct box-shadow */
+  background-color: #535353; 
+  box-shadow: 0px 4px 6px rgba(78, 75, 78, 0.5); 
 }
 
 
@@ -882,7 +882,7 @@ tr:nth-child(even) {
   transform: scale(1.1);
 }
 
-.nav-link:active {
+.nav-link.active {
   color: #1a54a1 !important;
   transform: scale(0.95);
   font-weight: bold;
@@ -1188,12 +1188,12 @@ p.bannerTagline{
   position: fixed;
   top: 100px;
   right: 20px;
-  max-width: 600px; /* Adjust width as needed */
-  z-index: 1050; /* Ensure it appears above other elements */
+  max-width: 600px;
+  z-index: 1050;
 }
 
 .alert {
-  margin-bottom: 10px; /* Add some space between alerts if there are multiple */
+  margin-bottom: 10px;
 }
 
 

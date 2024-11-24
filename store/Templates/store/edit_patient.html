@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-start min-vh-100 pt-5">
-    <form class="form bg-light p-4 rounded shadow" method="post" action="{% url 'edit_patient' patient.patient_id %}" style="width: 300px;">
+    <form class="form bg-light p-4 rounded shadow" method="post" action="{% url 'edit_patient' patient.patient_id %}" style="width: 500px;">
         {% csrf_token %}
         <div class="form-group mb-3">
             <h2 class="fs-3 py-2 fw-bold">Edit patient</h2>

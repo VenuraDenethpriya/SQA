@@ -124,7 +124,6 @@ def edit_product(request, product_id):
         product.save()
         return redirect(reverse('edit_product', args=[product_id]))
     return render(request, 'store/edit_product.html', {'product': product})
-
 def delete_product(request, product_id):
     product = get_object_or_404(Product, product_id=product_id)
     product.delete()
@@ -195,6 +194,7 @@ def transaction_form(request):
         patient_age = request.POST['patient_age']
         problem = request.POST['problem']
         products = request.POST['products']
+        price = request.POST['price']
         customer_name = request.POST['customer_name']
         customer_age = request.POST['customer_age']
         
@@ -203,6 +203,7 @@ def transaction_form(request):
             patient_age=patient_age,
             problem=problem,
             products=products,
+            price=price,
             customer_name=customer_name,
             customer_age=customer_age
         )

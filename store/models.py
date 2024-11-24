@@ -76,6 +76,7 @@ class NewTransaction(models.Model):
     patient_age = models.IntegerField()
     problem = models.CharField(max_length=500)
     products = models.CharField(max_length=500)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     customer_name = models.CharField(max_length=50)
     customer_age = models.IntegerField()
     

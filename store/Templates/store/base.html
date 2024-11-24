@@ -35,24 +35,11 @@
         {% if user.is_authenticated %}
         <nav>
           <div class="d-flex fs-4">
-            <a href="{% url 'product' %}" class="text-white fs-3 me-4 nav-link"
-              >Product</a
-            >
-            <a href="{% url 'patient' %}" class="text-white fs-3 me-4 nav-link"
-              >Patient</a
-            >
-            <a
-              href="{% url 'transaction_form' %}"
-              class="text-white fs-3 nav-link"
-              >Add New Transaction</a
-            >
-            <a
-              href="{% url 'transaction_history' %}"
-              class="text-white fs-3 nav-link"
-              >Transaction History</a
-            >
+            <a href="{% url 'product' %}" class="text-white fs-3 me-4 nav-link {% if request.path == 'product/' %}active{% endif %}">Product</a>
+            <a href="{% url 'patient' %}" class="text-white fs-3 me-4 nav-link {% if request.path == '/patient/' %}active{% endif %}">Patient</a>
+            <a href="{% url 'transaction_form' %}" class="text-white fs-3 nav-link {% if request.path == '/transaction_form/' %}active{% endif %}">Add New Transaction</a>
+            <a href="{% url 'transaction_history' %}" class="text-white fs-3 nav-link {% if request.path == '/transaction_history/' %}active{% endif %}">Transaction History</a>
           </div>
-          
         </nav>
         {% else %} {% endif %} {% if user.is_authenticated %}
         <a href="{% url 'logout_user' %}">
