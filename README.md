@@ -1,5 +1,7 @@
 SQA Assignment - Medical Management System
 
+![image](https://github.com/user-attachments/assets/5731d740-04d8-4d44-b168-a0e151889059)
+
 ![Screenshot (8)](https://github.com/user-attachments/assets/8f863b87-b4ba-4525-b8e6-f32accb9e684)
 
 ![Screenshot (6)](https://github.com/user-attachments/assets/e2f3b299-4f8b-4d8a-aebf-343299a165a1)
@@ -17,27 +19,28 @@ SQA Assignment - Medical Management System
    ## Installation and Setup
 
 **1. Clone the repository:**
-   bash
-   git clone https://github.com/your-username/time-table-management-system.git
+```
+   git clone https://github.com/VenuraDenethpriya/SQA.git
+   ```
    
 **2.Create a virtual environment and activate it:**
- bash
+```
  python -m venv venv
  source venv/bin/activate  # For Linux/Mac
  venv\Scripts\activate
- `
+```
 
 **3.Install dependencies:**
- bash
+```
  pip install django
- 
+ ```
 
 **4.Apply migrations:**
- bash
+```
  py manage.py makemigrations
  py manage.py migrate
- 
+ ```
 **5.Run the development server:**
- bash
+```
  py manage.py runserver
  ```
