@@ -18,29 +18,29 @@ SQA Assignment - Medical Management System
 
    ## Installation and Setup
 
-**1. Clone the repository:**
+**1. Clone the repository :**
 ```
 git clone https://github.com/VenuraDenethpriya/SQA.git
    ```
    
-**2.Create a virtual environment and activate it:**
+**2.Create a virtual environment and activate it :**
 ```
  python-m venv venv
  source venv/bin/activate  # For Linux/Mac
  venv\Scripts\activate
 ```
 
-**3.Install dependencies:**
+**3.Install dependencies :**
 ```
  pip install django
  ```
 
-**4.Apply migrations:**
+**4.Apply migrations :**
 ```
  py manage.py makemigrations
  py manage.py migrate
  ```
-**5.Run the development server:**
+**5.Run the development server :**
 ```
  py manage.py runserver
  ```
