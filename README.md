@@ -20,12 +20,12 @@ SQA Assignment - Medical Management System
 
 **1. Clone the repository:**
 ```
-   git clone https://github.com/VenuraDenethpriya/SQA.git
+git clone https://github.com/VenuraDenethpriya/SQA.git
    ```
    
 **2.Create a virtual environment and activate it:**
 ```
- python -m venv venv
+ python-m venv venv
  source venv/bin/activate  # For Linux/Mac
  venv\Scripts\activate
 ```
