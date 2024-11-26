@@ -37,10 +37,10 @@ git clone https://github.com/VenuraDenethpriya/SQA.git
 
 **4.Apply migrations :**
 ```
- py manage.py makemigrations
+ python manage.py makemigrations
  py manage.py migrate
  ```
 **5.Run the development server :**
 ```
- py manage.py runserver
+ python manage.py runserver
  ```
